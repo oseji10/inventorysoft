@@ -38,7 +38,7 @@ class SignupMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Gogetit e-Naira Data Agent Portal - New Account Registration',
+            subject: 'ODT IMS Software - New Account Registration',
         );
     }
 
@@ -64,8 +64,8 @@ class SignupMail extends Mailable
         // );
         return 
         $this->view('email.signup')
-        ->from("hello@gogetit.com.ng", "Gogetit eNaira")
-        ->subject("Gogetit e-Naira Data Agent Portal - New Account Registration");
+        ->from("hello@gogetit.com.ng", "ODT IMS Software")
+        ->subject("ODT IMS Software - New Account Registration");
         
         // -subject("Gogetit e-Naira Data Agent Portal - New Account Registration")
     }

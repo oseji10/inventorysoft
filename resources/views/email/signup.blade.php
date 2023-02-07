@@ -65,7 +65,7 @@
                             <p>Username: {{$phone_number}}</p>
                             <p>Email: {{$email}}</p>
                             <p>Password: {{$password}}</p>
-                            <p>Click here to go to login page</p><a href="http://ims.gogetit.com.ng" style="padding: 10px; background-color: #7366ff; color: #fff; display: inline-block; border-radius: 4px; margin-bottom: 18px">Call To Action </a>
+                            <p>Click here to go to login page</p><a href="http://ims.gogetit.com.ng" style="padding: 10px; background-color: #7366ff; color: #fff; display: inline-block; border-radius: 4px; margin-bottom: 18px">Click Here To Login </a>
                             <p style="margin-bottom: 0">Welcome on board!</p>
                           </td>
                         </tr>
