@@ -14,14 +14,17 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-sm-12">
+			<button class="btn btn-square btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModalfat"  type="button">[+] Add  New User</button><br/><br/>
 			<div class="card">
 				<div class="card-header">
 					<h5>Users List</h5>
-				</div>
-				<div class="card-body">
+					</div>
+				
+				
+					<div class="card-body">
 					<div class="dt-ext table-responsive">
 						<table class="display" id="export-button">
-							
+					
 							<?php if(session('success')): ?>
 							<div class="alert alert-success dark" role="alert">
 							  <?php echo e(@session('success')); ?>  
@@ -33,6 +36,106 @@
 							</div>
 							<?php endif; ?>			
 						
+							<div class="modal fade" id="exampleModalfat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+								   <div class="modal-content">
+									  <div class="modal-header">
+										 <h5 class="modal-title" id="exampleModalLabel2">New User</h5>
+										 <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+									  </div>
+									  <div class="modal-body">
+										 <form method="POST" action="<?php echo e(route('register.perform')); ?>" >
+											<?php echo csrf_field(); ?>
+
+											<?php
+											// Available alpha caracters
+											$characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+											
+											// generate a pin based on 2 * 7 digits + a random character
+											$pin = mt_rand(1000, 9999)
+												. mt_rand(1000, 9999)
+												. $characters[rand(0, strlen($characters) - 1)];
+											
+											// shuffle the result
+											$string = str_shuffle($pin);
+											?>
+
+												<input class="form-control" id="exampleInputPassword1" type="hidden" name="password" value="<?php echo $string ?>">
+												<input class="form-control" id="exampleInputPassword1" type="hidden" name="password_confirmation" value="<?php echo $string ?>">
+
+
+											<div class="mb-3">
+											   <label class="col-form-label" for="recipient-name">First Name:</label>
+											   <input class="form-control" type="text" name="first_name">
+											</div>
+			
+											
+			
+									
+			
+											<div class="mb-3">
+												<label class="col-form-label" for="recipient-name">Lastname:</label>
+												<input class="form-control" type="text" name="last_name">
+											</div>
+			
+			
+											<div class="mb-3">
+												<label class="col-form-label" for="recipient-name">Othernames:</label>
+												<input class="form-control" type="text" name="other_names">
+											</div>
+			
+			
+											<div class="mb-3">
+												<label class="col-form-label" for="recipient-name">Email:</label>
+												<input class="form-control" type="text" name="email">
+											</div>
+			
+											<div class="mb-3">
+												<label class="col-form-label" for="recipient-name">Phone:</label>
+												<input class="form-control" type="text" name="phone_number">
+											</div>
+			
+										
+											<div class="mb-2">
+												<label class="col-form-label">Role:</label>
+												<select class="form-control " name="role_id">
+													<optgroup label="Roles">
+														<option value="">Select Role</option>
+														<?php echo e($roles =  App\Models\Role::select('*')->get()); ?>
+
+														<?php $__empty_1 = true; $__currentLoopData = $roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+														<option value="<?php echo e($item->id); ?>" ><?php echo e($item->role_name); ?></option>
+														<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+														<?php endif; ?>
+													</optgroup>
+												</select>
+											</div>
+			
+			
+											<div class="mb-2">
+												<label class="col-form-label">Warehouse Assigned:</label>
+												<select class="form-control " name="warehouse_id">
+													<optgroup label="Warehouses">
+														<option value="">Select Warehouse</option>
+														<?php echo e($warehouses =  App\Models\Warehouse::select('*')->get()); ?>
+
+														<?php $__empty_1 = true; $__currentLoopData = $warehouses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+														<option value="<?php echo e($item->id); ?>" ><?php echo e($item->warehouse_name); ?></option>
+														<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+														<?php endif; ?>
+													</optgroup>
+												</select>
+											</div>
+			
+											 <div class="modal-footer">
+												 <button class="btn btn-primary" type="submit">Save</button>
+												<button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
+											 </div>
+											 
+										 </form>
+									  </div>
+
+
 							<thead>
 								<tr>
 									<th>Username</th>
@@ -60,9 +163,9 @@
 									<td colspan="5" style="color:red">Oops! No users registered yet</td>
 								  </tr>
 								<?php endif; ?>
-								
+			
 							</tbody>
-							
+				
 						</table>
 					</div>
 				</div>
