@@ -16,7 +16,10 @@
       </div>
     </form>
     <div class="header-logo-wrapper col-auto p-0">
-      <div class="logo-wrapper"><a href="<?php echo e(route('dashboard.show')); ?>"><h4>ODT</h4></a></div>
+      <div class="logo-wrapper"><a href="<?php echo e(route('dashboard.show')); ?>">
+        <h2>ODT</h2>
+        
+      </a></div>
       <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="align-center"></i></div>
     </div>
     <div class="left-header col horizontal-wrapper ps-0">

@@ -6,7 +6,10 @@
 			<div class="back-btn"><i class="fa fa-angle-left"></i></div>
 			{{-- <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="grid"> </i></div> --}}
 		</div>
-		<div class="logo-icon-wrapper"><a href="{{route('/')}}"><img class="img-fluid" src="{{asset('assets/images/Gogetit-logo2.png')}}" width="50px" alt="Gogetit Logo"></a></div>
+		<div class="logo-icon-wrapper">
+			<a href="{{route('/')}}"><img class="img-fluid" src="{{asset('assets/images/Gogetit-logo2.png')}}" width="50px" alt="Gogetit Logo"></a>
+		<h2>ODT</h2>
+		</div>
 		<nav class="sidebar-main">
 			<div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
 			<div id="sidebar-menu">
