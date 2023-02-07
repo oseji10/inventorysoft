@@ -120,7 +120,7 @@
 												<label class="col-form-label">Role:</label>
 												<select class="form-control " name="role_id">
 													<optgroup label="Roles">
-														<option value="">Select Role</option>
+														<option value="">-----Select Role-----</option>
 														{{$roles =  App\Models\Role::select('*')->get();}}
 														@forelse($roles as $item)
 														<option value="{{$item->id}}" >{{$item->role_name}}</option>
@@ -135,7 +135,7 @@
 												<label class="col-form-label">Warehouse Assigned:</label>
 												<select class="form-control " name="warehouse_id">
 													<optgroup label="Warehouses">
-														<option value="">Select Warehouse</option>
+														<option value="">-----Select Warehouse-----</option>
 														{{$warehouses =  App\Models\Warehouse::select('*')->get();}}
 														@forelse($warehouses as $item)
 														<option value="{{$item->id}}" >{{$item->warehouse_name}}</option>
