@@ -12,7 +12,7 @@ class StockTransfer extends Model
 {
     use HasFactory;
     protected $table = 'stock_transfer_history';
-    public $fillable = ['stock_id','initial_stock_id', 'received_from', 'sent_to', 'quantity_received', 'sent_by', 'received_by'];
+    public $fillable = ['stock_id','initial_stock_id', 'received_from', 'sent_to', 'quantity_received', 'quantity_dispatched', 'sent_by', 'received_by'];
     public $incrementing = false; 
     public $keyType = 'string';
     protected $primaryKey = 'stock_id';
@@ -46,6 +46,16 @@ public function product_list(): HasOne
 public function warehouse_list(): HasOne
 {
     return $this->hasOne(Warehouse::class, 'warehouse_id', 'warehouse_id');
+}
+
+/**
+ * Get the user associated with the StockTransfer
+ *
+ * @return \Illuminate\Database\Eloquent\Relations\HasOne
+ */
+public function sent_to_list(): HasOne
+{
+    return $this->hasOne(Warehouse::class, 'warehouse_id', 'sent_to');
 }
 
 }

@@ -15,8 +15,8 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<span><button class="btn btn-square btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModalfat"  type="button">[+] Add  New Stock</button></span>
-			<span><button class="btn btn-square btn-info " data-bs-toggle="modal" data-bs-target="#exampleModalfat"  type="button">[+] Stock Transfer History</button></span>
-			<span><button class="btn btn-square btn-secondary " data-bs-toggle="modal" data-bs-target="#exampleModalfat"  type="button">[+] Stock Count History</button></span><br/><br/>
+			<span><a href="stock-transfer-history"><button class="btn btn-square btn-info "   type="button">Stock Transfer History</button></a></span>
+			<span><button class="btn btn-square btn-secondary " data-bs-toggle="modal" data-bs-target="#exampleModalfat"  type="button">Stock Count History</button></span><br/><br/>
 			<div class="card">
 				<div class="card-header">
 					<h5>Stock List</h5>
@@ -199,18 +199,18 @@
 
 												<div class="mb-3">
 													<label class="col-form-label" for="message-text">Quantity To Transfer</label>
-													<input class="form-control" type="number" name="quantity_received">
-													<input class="form-control" type="text" name="initial_stock_id" value="<?php echo e($item->stock_id); ?>">
-													<input class="form-control" type="text" name="sent_from" value="<?php echo e($item->warehouse_id); ?>">
+													<input class="form-control" type="number" name="quantity_dispatched">
+													<input class="form-control" type="hidden" name="initial_stock_id" value="<?php echo e($item->stock_id); ?>">
+													<input class="form-control" type="hidden" name="sent_from" value="<?php echo e($item->warehouse_id); ?>">
 													
 												 </div>
 											
 												 <div class="mb-2">
 													<label class="col-form-label">Select Warehouse To Transfer To:</label>
-													<select class="form-control " name="warehouse_id">
+													<select class="form-control " name="sent_to">
 														<optgroup label="Warehouses">
 															<option value="">-----Select Warehouse-----</option>
-															<?php echo e($warehouses =  App\Models\Warehouse::select('*')->get()); ?>
+															<?php echo e($warehouses =  App\Models\Warehouse::select('*')->where('warehouse_id', '!=', $item->warehouse_id)->get()); ?>
 
 															<?php $__empty_2 = true; $__currentLoopData = $warehouses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_2 = false; ?>
 															<option value="<?php echo e($item->warehouse_id); ?>" ><?php echo e($item->warehouse_name); ?></option>

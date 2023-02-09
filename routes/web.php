@@ -426,8 +426,12 @@ Route::get('supplier-list', [SupplierController::class, 'allsuppliers'])->name('
 Route::post('register_supplier', [SupplierController::class, 'register_supplier'])->name('register_supplier.upload');
 
 Route::get('stock-list', [StockController::class, 'allstocks'])->name('stock-list.show');
+
+Route::get('stock-transfer-history', [StockController::class, 'stock_transfer_history'])->name('stock-transfer-history.show');
+
 Route::post('register_stock', [StockController::class, 'register_stock'])->name('register_stock.upload');
 Route::post('transfer_stock', [StockController::class, 'transfer_stock'])->name('transfer_stock.upload');
+Route::post('confirm_stock_transfer', [StockController::class, 'confirm_stock_transfer'])->name('confirm_stock_transfer.upload');
 
 Route::get('/testroute', function() {
     // $first_name = "Funny Coder";

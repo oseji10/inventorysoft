@@ -23,6 +23,7 @@ class StockTransferHistory extends Migration
             $table->string('sent_from', 32)->references('warehouse_id')->on('warehouse')->nullable();
             $table->string('sent_to', 32)->references('warehouse_id')->on('warehouse')->nullable();
             // $table->string('received_from', 32)->references('warehouse_id')->on('warehouse');
+            $table->bigInteger('quantity_dispatched')->nullable();
             $table->bigInteger('quantity_received')->nullable();
             $table->unsignedBigInteger('sent_by')->nullable()->nullable();
             $table->foreign('sent_by')->references('id')->on('user');
