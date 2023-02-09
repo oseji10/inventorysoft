@@ -17,6 +17,7 @@ use App\Http\Controllers\ProductTypeController;
 use App\Http\Controllers\ManufacturerController;
 use App\Http\Controllers\WarehouseController;
 use App\Http\controllers\SupplierController;
+use App\Http\Controllers\StockController;
 // use App\Mail\SignupMail;
 // use Illuminate\Support\Facades\Mail;
 
@@ -424,6 +425,9 @@ Route::post('register_warehouse', [WarehouseController::class, 'register_warehou
 Route::get('supplier-list', [SupplierController::class, 'allsuppliers'])->name('supplier-list.show');
 Route::post('register_supplier', [SupplierController::class, 'register_supplier'])->name('register_supplier.upload');
 
+Route::get('stock-list', [StockController::class, 'allstocks'])->name('stock-list.show');
+Route::post('register_stock', [StockController::class, 'register_stock'])->name('register_stock.upload');
+Route::post('transfer_stock', [StockController::class, 'transfer_stock'])->name('transfer_stock.upload');
 
 Route::get('/testroute', function() {
     // $first_name = "Funny Coder";

@@ -15,9 +15,10 @@ class CreateStockHistoryTable extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('stock_history', function (Blueprint $table) {
+        Schema::create('stock_count_history', function (Blueprint $table) {
             $table->id();
-            $table->string('stock_id');
+            // $table->string('stock_id');
+            $table->string('stock_id', 32)->references('stock_id')->on('stock');
             $table->bigInteger('opening_balance')->nullable();
             $table->bigInteger('closing_balance')->nullable();
             $table->bigInteger('last_updated_by')->nullable();

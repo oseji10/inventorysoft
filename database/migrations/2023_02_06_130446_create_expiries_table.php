@@ -13,14 +13,16 @@ class CreateExpiriesTable extends Migration
      */
     public function up()
     {
-        Schema::disableForeignKeyConstraints();
+        // Schema::disableForeignKeyConstraints();
 
         Schema::create('expiries', function (Blueprint $table) {
             $table->id();
-            $table->string('stock_id');
+            // $table->string('stock_id');
+            $table->string('stock_id', 32)->references('stock_id')->on('stock');
             $table->timestamp('expiry_date')->nullable();
             $table->bigInteger('quantity')->nullable();
-            $table->string('warehouse_id')->nullable();
+            // $table->string('warehouse_id')->nullable();
+            $table->string('warehouse_id')->references('warehouse_id')->on('warehouse');
             $table->unsignedBigInteger('added_by')->nullable();
             $table->foreign('added_by')->references('id')->on('user');
             $table->timestamp('created_at');
@@ -28,7 +30,7 @@ class CreateExpiriesTable extends Migration
             $table->timestamp('deleted_at')->nullable();
         });
 
-        Schema::enableForeignKeyConstraints();
+        // Schema::enableForeignKeyConstraints();
     }
 
     /**

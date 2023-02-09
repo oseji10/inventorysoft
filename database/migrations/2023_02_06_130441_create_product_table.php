@@ -13,11 +13,12 @@ class CreateProductTable extends Migration
      */
     public function up()
     {
-        Schema::disableForeignKeyConstraints();
+        // Schema::disableForeignKeyConstraints();
 
         Schema::create('product', function (Blueprint $table) {
             $table->id();
-            $table->string('product_id');
+            // $table->string('product_id');
+            $table->string('product_id', 32)->index();
             $table->string('product_name')->nullable();
             $table->string('description')->nullable();
             $table->bigInteger('manufacturer_id')->nullable();
@@ -33,7 +34,7 @@ class CreateProductTable extends Migration
             $table->string('status')->default('ACTIVE');
         });
 
-        Schema::enableForeignKeyConstraints();
+        // Schema::enableForeignKeyConstraints();
     }
 
     /**

@@ -100,7 +100,7 @@
 												<label class="col-form-label">Role:</label>
 												<select class="form-control " name="role_id">
 													<optgroup label="Roles">
-														<option value="">Select Role</option>
+														<option value="">-----Select Role-----</option>
 														<?php echo e($roles =  App\Models\Role::select('*')->get()); ?>
 
 														<?php $__empty_1 = true; $__currentLoopData = $roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
@@ -116,7 +116,7 @@
 												<label class="col-form-label">Warehouse Assigned:</label>
 												<select class="form-control " name="warehouse_id">
 													<optgroup label="Warehouses">
-														<option value="">Select Warehouse</option>
+														<option value="">-----Select Warehouse-----</option>
 														<?php echo e($warehouses =  App\Models\Warehouse::select('*')->get()); ?>
 
 														<?php $__empty_1 = true; $__currentLoopData = $warehouses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>

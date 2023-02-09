@@ -17,7 +17,8 @@ class CreateInventoryTransferTable extends Migration
 
         Schema::create('inventory_transfer', function (Blueprint $table) {
             $table->id();
-            $table->string('stock_id');
+            // $table->string('stock_id');
+            $table->string('stock_id', 32)->references('stock_id')->on('stock');
             $table->bigInteger('quantity_transferred')->nullable();
             $table->bigInteger('quantity_received')->nullable();
             $table->bigInteger('warehouse_transferred_from')->nullable();

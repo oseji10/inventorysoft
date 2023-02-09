@@ -199,7 +199,7 @@
 
 					<li class="sidebar-list">
 						
-						<a class="sidebar-link sidebar-title <?php echo e(request()->route()->getPrefix() == '/settings' ? 'active' : ''); ?>" href="#">
+						<a class="sidebar-link sidebar-title <?php echo e(request()->route()->getPrefix() == '/settings' ? 'active' : ''); ?>" href="stock-list">
 							<i data-feather="inbox"></i><span>Stock </span>
 							
 						</a>

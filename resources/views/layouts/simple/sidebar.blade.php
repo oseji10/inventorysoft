@@ -208,7 +208,7 @@
 
 					<li class="sidebar-list">
 						{{-- <label class="badge badge-danger">{{ trans('lang.New') }}</label> --}}
-						<a class="sidebar-link sidebar-title {{request()->route()->getPrefix() == '/settings' ? 'active' : '' }}" href="#">
+						<a class="sidebar-link sidebar-title {{request()->route()->getPrefix() == '/settings' ? 'active' : '' }}" href="stock-list">
 							<i data-feather="inbox"></i><span>Stock </span>
 							{{-- <div class="according-menu"><i class=""></i></div> --}}
 						</a>

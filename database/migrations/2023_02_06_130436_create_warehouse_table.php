@@ -13,11 +13,12 @@ class CreateWarehouseTable extends Migration
      */
     public function up()
     {
-        Schema::disableForeignKeyConstraints();
+        // Schema::disableForeignKeyConstraints();
 
         Schema::create('warehouse', function (Blueprint $table) {
             $table->id();
-            $table->string('warehouse_id');
+            // $table->string('warehouse_id');
+            $table->string('warehouse_id', 32)->index();
             $table->string('warehouse_name')->nullable();
             $table->string('warehouse_address')->nullable();
             $table->string('warehouse_phone')->nullable();
@@ -33,7 +34,7 @@ class CreateWarehouseTable extends Migration
             $table->string('status')->default('ACTIVE');
         });
 
-        Schema::enableForeignKeyConstraints();
+        // Schema::enableForeignKeyConstraints();
     }
 
     /**

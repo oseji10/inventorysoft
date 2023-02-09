@@ -17,7 +17,8 @@ class CreateManufacturerTable extends Migration
 
         Schema::create('manufacturer', function (Blueprint $table) {
             $table->id();
-            $table->string('manufacturer_id');
+            // $table->string('manufacturer_id');
+            $table->string('manufacturer_id', 32)->index();
             $table->string('manufacturer_name')->nullable();
             $table->string('manufacturer_short_name')->nullable();
             $table->string('manufacturer_address')->nullable();
