@@ -9,6 +9,12 @@ use DB;
 
 class ProductTypeController extends Controller
 {
+  public function __construct()
+{
+    // user must log in to use this controller
+    $this->middleware('auth');        
+}
+
     /**
      * Display register page.
      * 

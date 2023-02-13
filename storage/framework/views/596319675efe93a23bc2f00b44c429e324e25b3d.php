@@ -32,6 +32,9 @@
 
  
  
+ 
+
+
  <?php if(Auth::user()->role_id=="3" ?? null): ?>
  <div class="col-sm-6 col-xl-3 col-lg-6">
 	<div class="card o-hidden">
@@ -115,7 +118,7 @@
 	   <div class=" card-body">
 			 
 				<div class="media-body right-chart-content">
-				<span class="m-0">Products</span>
+				
 				<h4 class="mb-0 counter">
 					<?php echo e((DB::table('product')
 					->selectRaw('COUNT(product.id) as products')
@@ -123,6 +126,7 @@
 					->value('products'))); ?>
 
 				</h4>
+				<span class="m-0">Products</span>
 			 </div>
 	   </div>
 	</div>
@@ -133,7 +137,7 @@
 	   <div class=" card-body">
 			 
 				<div class="media-body right-chart-content">
-				<span class="m-0">Product Manufacturers</span>
+				
 				<h4 class="mb-0 counter">
 					<?php echo e((DB::table('manufacturer')
 					->selectRaw('COUNT(manufacturer.id) as manufacturer')
@@ -141,6 +145,7 @@
 					->value('manufacturer'))); ?>
 
 				</h4>
+				<span class="m-0">Product Manufacturers</span>
 			 </div>
 	   </div>
 	</div>
@@ -151,7 +156,7 @@
 	   <div class=" card-body">
 			 
 				<div class="media-body right-chart-content">
-				<span class="m-0">Warehouses</span>
+				
 				<h4 class="mb-0 counter">
 					<?php echo e((DB::table('warehouse')
 					->selectRaw('COUNT(warehouse.id) as warehouses')
@@ -159,6 +164,7 @@
 					->value('warehouses'))); ?>
 
 				</h4>
+				<span class="m-0">Warehouses</span>
 			 </div>
 	   </div>
 	</div>
@@ -169,7 +175,7 @@
 	   <div class=" card-body">
 			 
 				<div class="media-body right-chart-content">
-				<span class="m-0">Suppliers</span>
+				
 				<h4 class="mb-0 counter">
 					<?php echo e((DB::table('supplier')
 					->selectRaw('COUNT(supplier.id) as suppliers')
@@ -177,6 +183,7 @@
 					->value('suppliers'))); ?>
 
 				</h4>
+				<span class="m-0">Suppliers</span>
 			 </div>
 	   </div>
 	</div>
@@ -184,6 +191,8 @@
 
  
  </div>
+
+ 
  <?php endif; ?>
 		
 

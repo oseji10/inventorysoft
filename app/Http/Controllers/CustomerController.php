@@ -24,6 +24,13 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class CustomerController extends Controller
 {
+
+    public function __construct()
+{
+    // user must log in to use this controller
+    $this->middleware('auth');        
+}
+
     /**
      * Display register page.
      * 
