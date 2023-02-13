@@ -21,8 +21,8 @@ class CreateInventoryTransferTable extends Migration
             $table->string('stock_id', 32)->references('stock_id')->on('stock');
             $table->bigInteger('quantity_transferred')->nullable();
             $table->bigInteger('quantity_received')->nullable();
-            $table->bigInteger('warehouse_transferred_from')->nullable();
-            $table->bigInteger('warehouse_transferred_to')->nullable();
+            $table->string('warehouse_transferred_from', 32)->references('warehouse_id')->on('warehouse')->nullable();
+            $table->string('warehouse_transferred_to', 32)->references('warehouse_id')->on('warehouse')->nullable();
             $table->decimal('cost_per_unit')->nullable();
             $table->unsignedBigInteger('sent_by')->nullable();
             $table->foreign('sent_by')->references('id')->on('user');

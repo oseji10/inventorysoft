@@ -18,9 +18,9 @@ class CreateRoleTable extends Migration
         Schema::create('role', function (Blueprint $table) {
             $table->id();
             $table->string('role_name')->nullable();
-            $table->string('created_at');
-            $table->string('updated_at');
-            $table->string('deleted_at')->nullable();
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at');
+            $table->timestamp('deleted_at')->nullable();
         });
 
         Schema::enableForeignKeyConstraints();

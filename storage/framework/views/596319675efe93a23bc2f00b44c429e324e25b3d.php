@@ -19,24 +19,180 @@
 
 <?php $__env->startSection('content'); ?>
 <div class="container-fluid">
-	
+	<div class="row second-chart-list third-news-update">
 		
- 
+		
+		
 
 
 
+
+
+
+
  
  
-		
-		
-		
+ <?php if(Auth::user()->role_id=="3" ?? null): ?>
+ <div class="col-sm-6 col-xl-3 col-lg-6">
+	<div class="card o-hidden">
+	   <div class="bg-primary b-r-4 card-body">
+			 <div class="media-body">
+				<span class="m-0">Sales Today</span>
+				<h4>&#8358;
+					<?php echo e(number_format(DB::table('sale')
+					->selectRaw('SUM(sale.unit_cost*sale.quantity_sold) as cons')
+					// ->whereMonth('sale.created_at', Carbon\Carbon::now()->month)
+					->whereDay('sale.created_at', Carbon\Carbon::now()->day)
+					->value('cons'), 2)); ?>
+
+				</h4>
+			 </div>
+	   </div>
+	</div>
+ </div>
+
+ <div class="col-sm-6 col-xl-3 col-lg-6">
+	<div class="card o-hidden">
+	   <div class="bg-primary b-r-4 card-body">
+			 <div class="media-body">
+				<span class="m-0">Sales This Week</span>
+				<h4 class="mb-0 counter">
+					&#8358;
+					<?php echo e(number_format(DB::table('sale')
+					->selectRaw('SUM(sale.unit_cost*sale.quantity_sold) as cons')
+					// ->whereMonth('sale.created_at', Carbon\Carbon::now()->month)
+					->whereBetween('sale.created_at', [Carbon\Carbon::now()->startOfWeek(), Carbon\Carbon::now()->endOfWeek()])
+					->value('cons'), 2)); ?>
+
+				</h4>
+			 </div>
+	   </div>
+	</div>
+ </div>
+
+
+ <div class="col-sm-6 col-xl-3 col-lg-6">
+	<div class="card o-hidden">
+	   <div class="bg-primary b-r-4 card-body">
+			 <div class="media-body">
+				<span class="m-0">Sales This Month</span>
+				<h4 class="mb-0 counter">
+					&#8358;
+					<?php echo e(number_format(DB::table('sale')
+					->selectRaw('SUM(sale.unit_cost*sale.quantity_sold) as cons')
+					->whereMonth('sale.created_at', Carbon\Carbon::now()->month)
+					->value('cons'), 2)); ?>
+
+				</h4>
+			 </div>
+	   </div>
+	</div>
+ </div>
+
+
+ <div class="col-sm-6 col-xl-3 col-lg-6">
+	<div class="card o-hidden">
+	   <div class="bg-primary b-r-4 card-body">
+			 <div class="media-body">
+				<span class="m-0">Total Sales</span>
+				<h4 class="mb-0 counter">
+					&#8358;
+					<?php echo e(number_format(DB::table('sale')
+					->selectRaw('SUM(sale.unit_cost*sale.quantity_sold) as cons')
+					// ->whereMonth('sale.created_at', Carbon\Carbon::now()->month)
+					->value('cons'), 2)); ?>
+
+				</h4>
+			 </div>
+	   </div>
+	</div>
+ </div>
+
+
+ 
+ <div class="col-sm-6 col-xl-3 col-lg-6">
+	<div class="card o-hidden">
+	   <div class=" card-body">
+			 
+				<div class="media-body right-chart-content">
+				<span class="m-0">Products</span>
+				<h4 class="mb-0 counter">
+					<?php echo e((DB::table('product')
+					->selectRaw('COUNT(product.id) as products')
+					// ->whereMonth('sale.created_at', Carbon\Carbon::now()->month)
+					->value('products'))); ?>
+
+				</h4>
+			 </div>
+	   </div>
+	</div>
+ </div>
+
+ <div class="col-sm-6 col-xl-3 col-lg-6">
+	<div class="card o-hidden">
+	   <div class=" card-body">
+			 
+				<div class="media-body right-chart-content">
+				<span class="m-0">Product Manufacturers</span>
+				<h4 class="mb-0 counter">
+					<?php echo e((DB::table('manufacturer')
+					->selectRaw('COUNT(manufacturer.id) as manufacturer')
+					// ->whereMonth('sale.created_at', Carbon\Carbon::now()->month)
+					->value('manufacturer'))); ?>
+
+				</h4>
+			 </div>
+	   </div>
+	</div>
+ </div>
+
+ <div class="col-sm-6 col-xl-3 col-lg-6">
+	<div class="card o-hidden">
+	   <div class=" card-body">
+			 
+				<div class="media-body right-chart-content">
+				<span class="m-0">Warehouses</span>
+				<h4 class="mb-0 counter">
+					<?php echo e((DB::table('warehouse')
+					->selectRaw('COUNT(warehouse.id) as warehouses')
+					// ->whereMonth('sale.created_at', Carbon\Carbon::now()->month)
+					->value('warehouses'))); ?>
+
+				</h4>
+			 </div>
+	   </div>
+	</div>
+ </div>
+
+ <div class="col-sm-6 col-xl-3 col-lg-6">
+	<div class="card o-hidden">
+	   <div class=" card-body">
+			 
+				<div class="media-body right-chart-content">
+				<span class="m-0">Suppliers</span>
+				<h4 class="mb-0 counter">
+					<?php echo e((DB::table('supplier')
+					->selectRaw('COUNT(supplier.id) as suppliers')
+					// ->whereMonth('sale.created_at', Carbon\Carbon::now()->month)
+					->value('suppliers'))); ?>
+
+				</h4>
+			 </div>
+	   </div>
+	</div>
+ </div>
+
+ 
+ </div>
+ <?php endif; ?>
 		
 
 			
+
+
 			
 
 
-
 		
 		
 
@@ -45,12 +201,6 @@
 
 
 
-		
-		
-		
-		
-		
-		
 	</div>
 </div>
 <script type="text/javascript">

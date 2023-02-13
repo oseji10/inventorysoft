@@ -23,19 +23,19 @@ class CreateSaleTable extends Migration
             // $table->string('manufacturer_id')->nullable();
             // $table->string('supplier_id')->nullable();
             // $table->unsignedBigInteger('transaction_id')->nullable();
-            $table->string('transaction_id', 32)->references('transaction_id')->on('transaction');
+            $table->string('transaction_id', 32)->references('transaction_id')->on('transaction')->nullable();
             // $table->string('transaction_id')->references('transaction_id')->on('transaction');
-            $table->string('stock_id', 32)->references('stock_id')->on('stock');
-            $table->string('product_id', 32)->references('product_id')->on('product');
-            $table->string('manufacturer_id', 32)->references('manufacturer_id')->on('manufacturer');
-            $table->string('supplier_id', 32)->references('supplier_id')->on('supplier');
+            $table->string('stock_id', 32)->references('stock_id')->on('stock')->nullable();
+            $table->string('product_id', 32)->references('product_id')->on('product')->nullable();
+            $table->string('manufacturer_id', 32)->references('manufacturer_id')->on('manufacturer')->nullable();
+            $table->string('supplier_id', 32)->references('supplier_id')->on('supplier')->nullable();
             $table->bigInteger('quantity_sold')->nullable();
             $table->decimal('unit_cost')->nullable();
             $table->timestamp('created_at');
             $table->timestamp('updated_at');
             $table->timestamp('deleted_at')->nullable();
             $table->unsignedBigInteger('added_by')->nullable();
-            $table->string('payment_status')->nullable();
+            $table->string('payment_status')->default("PENDING");
             $table->string('payment_method')->nullable();
         });
 

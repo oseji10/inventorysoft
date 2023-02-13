@@ -20,7 +20,7 @@ class CreateTransactionTable extends Migration
             // $table->string('transaction_id');
             $table->string('transaction_id', 32)->index();
             $table->string('payment_mode')->nullable();
-            $table->string('payment_status')->nullable();
+            $table->string('payment_status')->default('PENDING');
             $table->decimal('amount_payable')->nullable();
             $table->decimal('amount_paid')->nullable();
             $table->unsignedBigInteger('sold_by')->nullable();
@@ -30,10 +30,10 @@ class CreateTransactionTable extends Migration
             $table->unsignedBigInteger('payment_confrimed_by')->nullable();
             $table->foreign('payment_confrimed_by')->references('id')->on('user');
             $table->bigInteger('payment_reference_number')->nullable();
-            $table->bigInteger('warehouse_id')->nullable();
-            $table->bigInteger('created_at');
-            $table->bigInteger('updated_at');
-            $table->bigInteger('deleted_at')->nullable();
+            $table->string('warehouse_id', 32)->references('warehouse_id')->on('warehouse')->nullable();
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at');
+            $table->timestamp('deleted_at')->nullable();
         });
 
         Schema::enableForeignKeyConstraints();

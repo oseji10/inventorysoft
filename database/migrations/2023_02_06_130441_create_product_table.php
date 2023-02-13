@@ -21,9 +21,9 @@ class CreateProductTable extends Migration
             $table->string('product_id', 32)->index();
             $table->string('product_name')->nullable();
             $table->string('description')->nullable();
-            $table->bigInteger('manufacturer_id')->nullable();
-            $table->unsignedBigInteger('product_type_id')->nullable();
-            $table->foreign('product_type_id')->references('id')->on('product_type');
+            $table->string('manufacturer_id', 32)->references('manufacturer_id')->on('manufacturer')->nullable();
+            $table->string('product_type_id', 32)->references('id')->on('product_type')->nullable();
+            
             $table->decimal('landed_cost')->nullable();
             $table->decimal('selling_price')->nullable();
             $table->timestamp('created_at');

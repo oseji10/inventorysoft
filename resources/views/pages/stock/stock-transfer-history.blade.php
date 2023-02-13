@@ -54,13 +54,13 @@
 									<th>Warehouse</th>
 									<th>Product</th>
 									<th>Manuafacturer</th>
-									<th>Qty Dispatched.</th>
+									<th>Qty Dispatched</th>
+									<th>Date Dispatched</th>
 									<th>Qty. Received</th>
-									{{-- <th>Qty. Exp.</th>
-									<th>Qty. Trf.</th>
+									<th>Date Received</th>
+									{{-- <th>Qty. Trf.</th>
 									<th>Qty. Avail.</th> --}}
 									
-									<th>Date Received</th>
 									<th>Status</th>
 									<th>Action</th>
 								</tr>
@@ -73,11 +73,12 @@
 									<td>{{$item->product_name ?? null}} {{$item->description ?? null}}</td>
 									<td>{{$item->manufacturer_short_name ?? null }}</td>
 									<td>{{$item->quantity_dispatched ?? null}}</td>
+									<td>{{$item->created_at ?? null}}</td>
 									<td>{{$item->quantity_received ?? 0 }}</td>
 									{{-- <td>{{$item->quantity_expired ?? null}}</td>
 									<td>{{$item->quantity_transferred ?? null}}</td>
 									<td>{{$item->quantity_expired ?? null}}</td> --}}
-									<td>{{$item->created_at ?? null}}</td>
+									<td>{{$item->updated_at ?? null}}</td>
 									@switch($item->transfer_status)
 									@case('PENDING RECEIPT')
 										<td style="color:brown">PENDING RECEIPT</td>

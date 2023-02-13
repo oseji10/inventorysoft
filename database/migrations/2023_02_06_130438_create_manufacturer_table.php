@@ -23,9 +23,9 @@ class CreateManufacturerTable extends Migration
             $table->string('manufacturer_short_name')->nullable();
             $table->string('manufacturer_address')->nullable();
             $table->string('status')->default('ACTIVE');
-            $table->string('created_at');
-            $table->string('updated_at');
-            $table->string('deleted_at')->nullable();
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at');
+            $table->timestamp('deleted_at')->nullable();
             $table->unsignedBigInteger('added_by')->nullable();
             $table->foreign('added_by')->references('id')->on('user');
         });

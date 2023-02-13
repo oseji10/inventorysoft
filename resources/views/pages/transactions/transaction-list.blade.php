@@ -1,5 +1,5 @@
 @extends('layouts.simple.master')
-@section('title', 'Product Type')
+@section('title', 'Transactions')
 
 @section('css')
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/vendors/datatables.css')}}">
@@ -22,82 +22,46 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-sm-12">
-			<button class="btn btn-square btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModalfat"  type="button">[+] Add  New Product</button><br/><br/>
+			<span><button class="btn btn-square btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModalfat"  type="button">[+] Create  New Transaction</button></span><br><br/>
+			{{-- <span><a href="stock-transfer-history"><button class="btn btn-square btn-info "   type="button">Transactions</button></a></span>
+			<span><button class="btn btn-square btn-secondary " data-bs-toggle="modal" data-bs-target="#exampleModalfat"  type="button">Stock Count History</button></span><br/><br/> --}}
 			<div class="card">
 				<div class="card-header">
-					<h5>Product List</h5>
+					<h5>Transaction List</h5>
 				</div>
 
 				<div class="modal fade" id="exampleModalfat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog" role="document">
 					   <div class="modal-content">
 						  <div class="modal-header">
-							 <h5 class="modal-title" id="exampleModalLabel2">New Product</h5>
+							 <h5 class="modal-title" id="exampleModalLabel2">New Transaction</h5>
 							 <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
 						  </div>
 						  <div class="modal-body">
-							 <form method="POST" action="{{route('register_product.upload')}}" >
+							{{-- @if(session('success'))
+							<div class="alert alert-success dark" role="alert">
+							  {{ @session('success') }}  
+							</div>
+							@endif
+							@if(session('error'))
+							<div class="alert alert-danger dark" role="alert">
+							  {{ @session('error') }}  
+							</div>
+							@endif --}}
+							 <form method="POST" action="{{route('transaction-page.found')}}" >
 								@csrf
-								<div class="mb-3">
-								   <label class="col-form-label" for="recipient-name">Product ID:</label>
-								   <input class="form-control" type="text" name="product_id">
+								{{-- <div class="mb-3">
+								   <label class="col-form-label" for="recipient-name">Stock ID:</label>
+								   <input class="form-control" type="text" name="stock_id">
+								</div> --}}
+
+						<div class="mb-3">
+									<label class="col-form-label" for="recipient-name">Customer Phone Number/Email:</label>
+									<input class="form-control" type="text" name="search">
 								</div>
-
-								<div class="mb-2">
-									<label class="col-form-label">Product Type:</label>
-									<select class="form-control " name="product_type_id">
-										<optgroup label="Product Types">
-											{{$product_types =  App\Models\ProductType::select('*')->get();}}
-											@forelse($product_types as $item)
-											<option value="{{$item->id}}" >{{$item->product_type_name}}</option>
-											@empty
-											@endforelse
-										</optgroup>
-									</select>
-								</div>
-
-						
-
-								<div class="mb-3">
-									<label class="col-form-label" for="recipient-name">Product Name:</label>
-									<input class="form-control" type="text" name="product_name">
-								</div>
-
-
-								<div class="mb-3">
-									<label class="col-form-label" for="message-text">Description:</label>
-									<textarea class="form-control" id="message-text" name="description"></textarea>
-								 </div>
-
-								 <div class="mb-2">
-									<label class="col-form-label">Manufacturer:</label>
-									<select class="form-control " name="manufacturer_id">
-										<optgroup label="Manufacturers">
-											<option value="">Select Manufacturer</option>
-											{{$manufacturers =  App\Models\Manufacturer::select('*')->get();}}
-											@forelse($manufacturers as $item)
-											<option value="{{$item->manufacturer_id}}" >{{$item->manufacturer_name}}</option>
-											@empty
-											@endforelse
-										</optgroup>
-									</select>
-								</div>
-
-								<div class="mb-3">
-									<label class="col-form-label" for="recipient-name">Landed Cost:</label>
-									<input class="form-control" type="text" name="landed_cost">
-								</div>
-
-								<div class="mb-3">
-									<label class="col-form-label" for="recipient-name">Selling Price:</label>
-									<input class="form-control" type="text" name="selling_price">
-								</div>
-
-							
-
-								 <div class="modal-footer">
-									 <button class="btn btn-primary" type="submit">Save</button>
-									<button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
+ 								<div class="modal-footer">
+									 <button class="btn btn-primary" type="submit">Start...</button>
+									{{-- <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button> --}}
 								 </div>
 							 </form>
 						  </div>
@@ -105,6 +69,8 @@
 					   </div>
 					</div>
 				 </div>
+
+
 
 				<div class="card-body">
 					<div class="dt-ext table-responsive">
@@ -123,39 +89,93 @@
 						
 							<thead>
 								<tr>
+									<th>Date</th>
 									<th>Product ID</th>
-									<th>Product Name</th>
-									<th>Description</th>
-									<th>Landed Cost</th>
-									<th>Selling Price</th>
-								
-									<th>Manufacturer</th>
+									<th>Payment Mode</th>
+									<th>Payment Status</th>
+									{{-- <th>Qty Rec.</th>
+									<th>Qty. Sold</th>
+									<th>Qty. Exp.</th>
+									<th>Qty. Trf.</th>
+									<th>Qty. Avail.</th> --}}
+									
+									<th>Action</th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>
-								@forelse ($products as $product)
+								@forelse ($transactions as $item)
 								<tr>
-									<td>{{$product->product_id ?? null}}</td>
-									<td>{{$product->product_name ?? null}}</td>
-									<td>{{$product->description ?? null}}</td>
-									<td>{{$product->landed_cost ?? null}}</td>
-									<td>{{$product->selling_price ?? null}}</td>
-									<td>{{$product->mm ?? null}}</td>
+									<td>{{$item->created_at ?? null}}</td> 
+									<td>{{$item->transaction_id ?? null}}</td>
+									<td>{{$item->payment_mode ?? null}}</td>
+									<td>{{$item->payment_status ?? null}}</td>
+									<td><a href="view_transaction"><i class="fa fa-search"></i></a></td>
+									{{-- <td>{{$item->manufacturer_list->manufacturer_name2 ?? null }}</td>
+									<td>{{$item->quantity_received ?? null}}</td>
+									<td>{{$item->quantity_sold ?? null}}</td>
+									<td>{{$item->quantity_expired ?? null}}</td>
+									<td>{{$item->quantity_transferred ?? null}}</td>
+									<td>{{$item->quantity_expired ?? null}}</td>
+									<td>{{$item->created_at ?? null}}</td>
+									<td><button class="btn btn-square btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalfat">Transfer</button></td> --}}
 								</tr>
+
+								{{-- <div class="modal fade" id="exampleModalfat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									<div class="modal-dialog" role="document">
+									   <div class="modal-content">
+										  <div class="modal-header">
+											 <h5 class="modal-title" id="exampleModalLabel2">Transfer Stock - {{$item->stock_id}}</h5>
+											 <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+										  </div>
+										  <div class="modal-body">
+											 <form method="POST" action="{{route('transfer_stock.upload')}}" >
+												@csrf
+						
+												<div class="mb-3">
+													<label class="col-form-label" for="message-text">Quantity Available</label>
+													<input readonly class="form-control" type="number" value="{{($item->quantity_received)-($item->quantity_sold+$item->quantity_expired+$item->quantity_transferred)}}" name="">
+												 </div>
+
+												<div class="mb-3">
+													<label class="col-form-label" for="message-text">Quantity To Transfer</label>
+													<input class="form-control" type="number" name="quantity_dispatched">
+													<input class="form-control" type="hidden" name="initial_stock_id" value="{{$item->stock_id}}">
+													<input class="form-control" type="hidden" name="sent_from" value="{{$item->warehouse_id}}">
+													
+												 </div>
+											
+												 <div class="mb-2">
+													<label class="col-form-label">Select Warehouse To Transfer To:</label>
+													<select class="form-control " name="sent_to">
+														<optgroup label="Warehouses">
+															<option value="">-----Select Warehouse-----</option>
+															{{$warehouses =  App\Models\Warehouse::select('*')->where('warehouse_id', '!=', $item->warehouse_id)->get();}}
+															@forelse($warehouses as $item)
+															<option value="{{$item->warehouse_id}}" >{{$item->warehouse_name}}</option>
+															@empty
+															@endforelse
+														</optgroup>
+													</select>
+												</div>
+				
+												 <div class="modal-footer">
+													 <button class="btn btn-square btn-primary" type="submit">Transfer</button>
+													<button class="btn btn-square btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
+												 </div>
+											 </form>
+										  </div>
+										
+									   </div>
+									</div>
+								 </div> --}}
 
 								@empty
 								<tr>
-									<td colspan="5" style="color:red">Oops! No products captured yet</td>
+									<td colspan="5" style="color:red">Oops! No stock added yet</td>
 								  </tr>
 								@endforelse
-								{{-- <tr>
-									<td>Tiger Nixon</td>
-									<td>System Architect</td>
-									<td>Edinburgh</td>
-									<td>61</td>
-									<td>2011/04/25</td>
-									<td>$320,800</td>
-								</tr> --}}
+				
 							</tbody>
 							{{-- <tfoot>
 								<tr>

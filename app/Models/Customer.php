@@ -13,7 +13,9 @@ class Customer extends Model
     use HasFactory;
     protected $table = 'customer';
     public $fillable = ['customer_name','customer_email', 'customer_phone_number', 'customer_phone_number_2', 'customer_state', 'customer_address', 'added_by'];
-
+    public $incrementing = false; 
+    public $keyType = 'string';
+    protected $primaryKey = 'customer_phone_number';
 
 /**
  * Get the user associated with the Consumer

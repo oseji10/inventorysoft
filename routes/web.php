@@ -18,6 +18,7 @@ use App\Http\Controllers\ManufacturerController;
 use App\Http\Controllers\WarehouseController;
 use App\Http\controllers\SupplierController;
 use App\Http\Controllers\StockController;
+use App\Http\Controllers\TransactionController;
 // use App\Mail\SignupMail;
 // use Illuminate\Support\Facades\Mail;
 
@@ -433,14 +434,22 @@ Route::post('register_stock', [StockController::class, 'register_stock'])->name(
 Route::post('transfer_stock', [StockController::class, 'transfer_stock'])->name('transfer_stock.upload');
 Route::post('confirm_stock_transfer', [StockController::class, 'confirm_stock_transfer'])->name('confirm_stock_transfer.upload');
 
-Route::get('/testroute', function() {
-    // $first_name = "Funny Coder";
-    // $email = $request->email;
-    // $first_name = $request->first_name;
-    // $last_name = $request->last_name;
-//The email sending is done using the to method on the Mail facade
-    Mail::to('testreceiver@gmail.com’')->send(new SignupMail($email, $first_name, $last_name));
-});
+Route::get('transaction-list', [TransactionController::class, 'alltransactions'])->name('transaction-list.show');
+Route::post('transaction-page', [TransactionController::class, 'find_customer'])->name('transaction-page.find');
+Route::get('transaction-page', [TransactionController::class, 'show'])->name('transaction-page.found');
+Route::get('transaction-page2', [TransactionController::class])->name('transaction-page2.found');
+Route::post('add-to-cart', [TransactionController::class, 'add_to_cart'])->name('add-to-cart.new');
+Route::post('register_transaction', [TransactionController::class, 'register_transaction'])->name('register_transaction.upload');
+Route::get('delete_transaction/{id}', [TransactionController::class, 'delete_transaction'])->name('delete_transaction.show');
+
+// Route::get('/testroute', function() {
+//     // $first_name = "Funny Coder";
+//     // $email = $request->email;
+//     // $first_name = $request->first_name;
+//     // $last_name = $request->last_name;
+// //The email sending is done using the to method on the Mail facade
+//     Mail::to('testreceiver@gmail.com’')->send(new SignupMail($email, $first_name, $last_name));
+// });
 
 Route::post('/changePassword', [App\Http\Controllers\RegisterController::class, 'changePasswordPost'])->name('changePasswordPost');
 
@@ -460,3 +469,4 @@ Route::post('update-settings/{id}', [HomeController::class, 'updateSettings'])->
 
 
 Route::get('/search', [SearchQueryController::class, 'search'])->name('search');
+

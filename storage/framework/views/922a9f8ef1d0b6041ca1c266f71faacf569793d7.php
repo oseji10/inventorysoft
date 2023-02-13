@@ -229,7 +229,7 @@
 										
 									   </div>
 									</div>
-								 </div>
+								</div>
 
 								<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
 								<tr>
@@ -238,7 +238,7 @@
 								<?php endif; ?>
 				
 							</tbody>
-							
+			
 						</table>
 					</div>
 				</div>
@@ -248,7 +248,6 @@
 
 
 
-		
 		</div>
 	</div>
 </div>

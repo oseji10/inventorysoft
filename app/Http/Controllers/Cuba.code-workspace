@@ -11,6 +11,9 @@
 		},
 		{
 			"path": "../../.."
+		},
+		{
+			"path": "../../../../cefter-ecom-backend"
 		}
 	],
 	"settings": {}

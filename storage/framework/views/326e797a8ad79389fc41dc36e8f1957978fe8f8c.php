@@ -46,11 +46,12 @@
 									<th>Warehouse</th>
 									<th>Product</th>
 									<th>Manuafacturer</th>
-									<th>Qty Dispatched.</th>
+									<th>Qty Dispatched</th>
+									<th>Date Dispatched</th>
 									<th>Qty. Received</th>
-									
-									
 									<th>Date Received</th>
+									
+									
 									<th>Status</th>
 									<th>Action</th>
 								</tr>
@@ -63,9 +64,10 @@
 									<td><?php echo e($item->product_name ?? null); ?> <?php echo e($item->description ?? null); ?></td>
 									<td><?php echo e($item->manufacturer_short_name ?? null); ?></td>
 									<td><?php echo e($item->quantity_dispatched ?? null); ?></td>
+									<td><?php echo e($item->created_at ?? null); ?></td>
 									<td><?php echo e($item->quantity_received ?? 0); ?></td>
 									
-									<td><?php echo e($item->created_at ?? null); ?></td>
+									<td><?php echo e($item->updated_at ?? null); ?></td>
 									<?php switch($item->transfer_status):
 									case ('PENDING RECEIPT'): ?>
 										<td style="color:brown">PENDING RECEIPT</td>

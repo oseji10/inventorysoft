@@ -30,6 +30,7 @@ class User extends Authenticatable
         'role_id',
         'phone_number',
         'added_by',
+        'warehouse_id',
         // 'coordinator_id'
     ];
 

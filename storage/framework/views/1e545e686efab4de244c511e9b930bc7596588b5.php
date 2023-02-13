@@ -207,7 +207,7 @@
 
 					<li class="sidebar-list">
 						
-						<a class="sidebar-link sidebar-title <?php echo e(request()->route()->getPrefix() == '/settings' ? 'active' : ''); ?>" href="#">
+						<a class="sidebar-link sidebar-title <?php echo e(request()->route()->getPrefix() == '/settings' ? 'active' : ''); ?>" href="transaction-list">
 							<i data-feather="dollar-sign"></i><span>Transactions </span>
 							
 						</a>

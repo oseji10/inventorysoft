@@ -102,7 +102,7 @@ class StockController extends Controller
     ->join('stock', 'stock.stock_id', '=', 'stock_transfer_history.initial_stock_id')
     ->join('product', 'product.product_id', '=', 'stock.product_id')
     ->join('manufacturer', 'manufacturer.manufacturer_id', '=', 'stock.manufacturer_id')
-    ->get(['stock_transfer_history.status as transfer_status', 'stock_transfer_history.initial_stock_id', 'stock_transfer_history.quantity_received', 'stock_transfer_history.stock_id', 'stock_transfer_history.quantity_dispatched', 'warehouse.*', 'product.*', 'manufacturer.*']);
+    ->get(['stock_transfer_history.status as transfer_status', 'stock_transfer_history.updated_at', 'stock_transfer_history.initial_stock_id', 'stock_transfer_history.quantity_received', 'stock_transfer_history.stock_id', 'stock_transfer_history.quantity_dispatched', 'warehouse.*', 'product.*', 'manufacturer.*']);
 
         return view('pages.stock.stock-transfer-history', compact('stock') );
 
@@ -164,32 +164,6 @@ $pin = mt_rand(1000, 9999)
         
         return back()->with('success', "Stock successfully received.");
     }
-//     public function transfer_stock2(Request $request){
-//     DB::transaction(function () {
-// 	$characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-											
-// 											// generate a pin based on 2 * 7 digits + a random character
-// $pin = mt_rand(1000, 9999)
-// . mt_rand(1000, 9999)
-// . $characters[rand(0, strlen($characters) - 1)];
-											
-// // shuffle the result
-// 	$stock_id = str_shuffle($pin);
-  
-//       // \Log::info($request->all());
-//       $stock_transfer = new StockTransfer();
-//       $stock_transfer->stock_id = $stock_id;
-//       $stock_transfer->initial_stock_id = $request->initial_stock_id;
-//       $stock_transfer->sent_from = $request->sent_from;
-//       $stock_transfer->sent_to = $request->sent_to;
-//       $stock_transfer->quantity_received = $request->quantity_received;
-//       $stock_transfer->sent_by = auth()->id();
- 
-//       $stock_transfer->save();
-  
-//       return back()->with('success', "Stock successfully transferred.");
-//     }, 5);
-    
-//     }
+
 
 }

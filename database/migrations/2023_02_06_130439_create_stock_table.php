@@ -17,16 +17,16 @@ class CreateStockTable extends Migration
 
         Schema::create('stock', function (Blueprint $table) {
             $table->id();
-            $table->string('stock_id', 32)->index();
-            $table->string('manufacturer_id', 32)->references('manufacturer_id')->on('manufacturer');
+            $table->string('stock_id', 32)->index()->nullable();
+            $table->string('manufacturer_id', 32)->references('manufacturer_id')->on('manufacturer')->nullable();
             
-            $table->string('supplier_id', 32)->references('supplier_id')->on('supplier');
+            $table->string('supplier_id', 32)->references('supplier_id')->on('supplier')->nullable();
             $table->string('batch_number')->nullable();
             $table->string('invoice_number')->nullable();
             // $table->string('product_id')->nullable();
-            $table->string('product_id', 32)->references('product_id')->on('product');
+            $table->string('product_id', 32)->references('product_id')->on('product')->nullable();
             // $table->bigInteger('warehouse_id')->nullable();
-            $table->string('warehouse_id', 32)->references('warehouse_id')->on('warehouse');
+            $table->string('warehouse_id', 32)->references('warehouse_id')->on('warehouse')->nullable();
             $table->bigInteger('quantity_received')->nullable();
             $table->bigInteger('quantity_sold')->nullable();
             $table->bigInteger('quantity_expired')->nullable();
